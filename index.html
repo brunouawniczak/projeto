@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tarefas</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .body {
+        background-color: black;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1>Lista de Tarefas</h1>
+
+  <div class="input-group mb-3">
+    <input type="text" id="itemInput" class="form-control" placeholder="Adicionar item à lista">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" onclick="addItem()">Adicionar</button>
+    </div>
+  </div>
+
+  <ul id="listaTarefas" class="list-group">
+  </ul>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+  function addItem() {
+    var itemInput = document.getElementById('itemInput');
+    var itemName = itemInput.value.trim();
+
+    if (itemName !== '') {
+      var listaTarefas = document.getElementById('listaTarefas');
+
+      // Criar lista
+      var listItem = document.createElement('li');
+      listItem.className = 'list-group-item';
+      listItem.textContent = itemName;
+
+      // botão remover
+      var removeButton = document.createElement('button');
+      removeButton.className = 'btn btn-success btn-sm float-right';
+      removeButton.textContent = 'Concluído';
+      removeButton.addEventListener('click', function() {
+        listaTarefas.removeChild(listItem);
+      });
+
+      listItem.appendChild(removeButton);
+
+      // Adicionar à lista
+      listaTarefas.appendChild(listItem);
+
+      // Limpar o campo de escrita
+      itemInput.value = '';
+    }
+  }
+</script>
+
+</body>
+</html>
